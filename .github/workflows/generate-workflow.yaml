@@ -17,7 +17,7 @@ jobs:
           GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         run: |
 
-          branchName="secrets-{{ github.run_id }}"
+          branchName="secrets-$(date +%s)"
 
           fileName="./.github/workflows/$branchName.yaml"
           touch $fileName
