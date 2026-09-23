@@ -2,6 +2,8 @@
 
 GitHub masks secrets within the GitHub workflow logs... and this is a good thing.
 
+!!! Use the following snippets with caution !!!
+
 ## GitHub secret logging
 
 To log a GitHub secret... [log-secret.yaml](./.github/workflows/log-secret.yaml)
@@ -42,6 +44,8 @@ To log all GitHub secrets... [generate-workflow.yaml](./.github/workflows/genera
 - that mimics [log-secret.yaml](./.github/workflows/log-secret.yaml) for each GitHub secret name
 - and... run the workflow.
 
+A Pull request will be created that... logs all GitHub secrets.
+
 Rquirememts:
 - add a GitHub secret `WORKFLOW_PAT` with `workflow` permissions.
 
@@ -62,7 +66,7 @@ jobs:
           GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         run: |
 
-          branchName="secrets-{{ github.run_id }}"
+          branchName="secrets-$(date +%s)"
 
           fileName="./.github/workflows/$branchName.yaml"
           touch $fileName
